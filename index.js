@@ -134,7 +134,7 @@ async function getPrice(inputCurrency) {
     [inputCurrency, tokens.BNB]
   );
   const price = amounts[1].toString() / 1e18;
-  return price * priceBNB;
+  return [price * priceBNB, priceBNB];
 }
 
 // async function getPriceETH(inputCurrency) {
@@ -356,10 +356,12 @@ async function getPrice(inputCurrency) {
 // }
 
 async function getDBSPrice(chatId) {
-  const price = await getPrice(DBS_CONTRACT);
+  const [price, priceBNB] = await getPrice(DBS_CONTRACT);
   await bot.sendMessage(
     chatId,
-    `DBS: <strong>${formatter.format(price)}</strong>`,
+    `DBS: <strong>${formatter.format(
+      price
+    )}</strong>\nBNB: <strong>${formatter.format(priceBNB)}</strong>`,
     {
       parse_mode: "HTML",
     }
