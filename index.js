@@ -8,6 +8,8 @@ const fetchStatus = {
 dotenv.config();
 
 const RENA_CONTRACT = "0xa9d75cc3405f0450955050c520843f99aff8749d";
+const SSS_CONTRACT="0xc3028fbc1742a16a5d69de1b334cbce28f5d7eb3"
+const CHMB_CONTRACT="0x5492ef6aeeba1a3896357359ef039a8b11621b45"
 
 let coinList = [];
 
@@ -356,12 +358,15 @@ async function getPrice(inputCurrency) {
 // }
 
 async function getDBSPrice(chatId) {
-  const [price, priceBNB] = await getPrice(RENA_CONTRACT);
+  const [price1, priceBNB1] = await getPrice(SSS_CONTRACT);
+  const [price2, priceBNB2] = await getPrice(CHMB_CONTRACT);
   await bot.sendMessage(
     chatId,
-    `RENA: <strong>${formatter.format(
-      price
-    )}</strong>\nBNB: <strong>${formatter.format(priceBNB)}</strong>`,
+    `SSS: <strong>${formatter.format(
+      price1
+    )}</strong>\nCHMB: <strong>${formatter.format(
+      price2
+    )}</strong>\nBNB: <strong>${formatter.format(priceBNB1)}</strong>`,
     {
       parse_mode: "HTML",
     }
