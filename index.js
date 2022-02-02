@@ -8,8 +8,9 @@ const fetchStatus = {
 dotenv.config();
 
 const RENA_CONTRACT = "0xa9d75cc3405f0450955050c520843f99aff8749d";
-const SSS_CONTRACT="0xc3028fbc1742a16a5d69de1b334cbce28f5d7eb3"
+const GEAR_CONTRACT="0xb4404dab7c0ec48b428cf37dec7fb628bcc41b36"
 const CHMB_CONTRACT="0x5492ef6aeeba1a3896357359ef039a8b11621b45"
+const TBL_CONTRACT="0x59f6b2435cd1421f409907ad2d9f811849ca555f"
 
 let coinList = [];
 
@@ -358,14 +359,18 @@ async function getPrice(inputCurrency) {
 // }
 
 async function getDBSPrice(chatId) {
-  const [price1, priceBNB1] = await getPrice(SSS_CONTRACT);
+  const [price1, priceBNB1] = await getPrice(TBL_CONTRACT);
   const [price2, priceBNB2] = await getPrice(CHMB_CONTRACT);
+  const [price3, priceBNB3] = await getPrice(GEAR_CONTRACT);
+  
   await bot.sendMessage(
     chatId,
-    `SSS: <strong>${formatter.format(
+    `TBL: <strong>${formatter.format(
       price1
     )}</strong>\nCHMB: <strong>${formatter.format(
       price2
+    )}</strong>\nGEAR: <strong>${formatter.format(
+      price3
     )}</strong>\nBNB: <strong>${formatter.format(priceBNB1)}</strong>`,
     {
       parse_mode: "HTML",
