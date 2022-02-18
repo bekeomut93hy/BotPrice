@@ -11,7 +11,7 @@ const RENA_CONTRACT = "0xa9d75cc3405f0450955050c520843f99aff8749d";
 const GEAR_CONTRACT="0xb4404dab7c0ec48b428cf37dec7fb628bcc41b36"
 const CHMB_CONTRACT="0x5492ef6aeeba1a3896357359ef039a8b11621b45"
 const TBL_CONTRACT="0x59f6b2435cd1421f409907ad2d9f811849ca555f"
-
+const ZWZ_CONTRACT="0x5445451c07e20ba1ca887b6c74d66d358f46d083"
 let coinList = [];
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
@@ -362,7 +362,7 @@ async function getDBSPrice(chatId) {
   const [price1, priceBNB1] = await getPrice(TBL_CONTRACT);
   const [price2, priceBNB2] = await getPrice(CHMB_CONTRACT);
   const [price3, priceBNB3] = await getPrice(GEAR_CONTRACT);
-  
+  const [price4, priceBNB4] = await getPrice(ZWZ_CONTRACT);
   await bot.sendMessage(
     chatId,
     `TBL: <strong>${formatter.format(
@@ -371,6 +371,8 @@ async function getDBSPrice(chatId) {
       price2
     )}</strong>\nGEAR: <strong>${formatter.format(
       price3
+    )}</strong>\nZWZ: <strong>${formatter.format(
+      price4
     )}</strong>\nBNB: <strong>${formatter.format(priceBNB1)}</strong>`,
     {
       parse_mode: "HTML",
